@@ -1,70 +1,44 @@
-// Webpack Config;
-
-const path = require("path");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// import dependencies 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const webpack = require("webpack");
+const path = require('path');
 
+// create webpack export
 module.exports = {
-    entry: {
-        app: './src/index.js'
+    context: __dirname,
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+        publicPath: '/',
     },
     devServer: {
         historyApiFallback: true
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebPackPlugin({
-            template: "./public/index.html",
-            filename: "./index.html",
-            inject: "body"
-        })
-    ],
-    output: {
-        filename: "app.js",
-        path: path.resolve(__dirname, "./dist/"),
-        publicPath: "/"
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
+                test: /\.js$/,
+                use: 'babel-loader',
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
+                use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|svg|jpg|gif|webm)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: "media/"
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: "[name].[ext]",
-                            outputPath: "fonts/"
-                        }
-                    }
-                ]
+                test: /\.(png|jpg|svg|gif)$/,
+                use: [{
+                    loader: 'file-loader',
+                }]
             }
         ]
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: path.resolve(__dirname, 'public/index.html'),
+            filename: 'index.html'
+        })
+    ], 
+    node: {
+        fs: "empty"
     }
-}
+};
