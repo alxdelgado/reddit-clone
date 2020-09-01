@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import HeaderNavLink from '../NavLink';
-import HeaderUsernameText from './Text';
+import HeaderUsernameText from './Username.styles';
 
 const Wrapper = styled(HeaderNavLink)`
     flex-shrink: 1;
@@ -10,10 +10,13 @@ const Wrapper = styled(HeaderNavLink)`
     min-width: 0;
 `;
 
-export default const HeaderUsername = props => (
-    <Wrapper to={`/u/${props.username}`}>
-        <HeaderUsernameText>{props.username}</HeaderUsernameText>
-    <Wrapper>
-);
+export default function HeaderUsername(props) {
+    return (
+        <Wrapper to={`/u/${props.username}`}>
+            <HeaderUsernameText>{props.username}</HeaderUsernameText>
+        </Wrapper>
+    )
+};
+
 
 

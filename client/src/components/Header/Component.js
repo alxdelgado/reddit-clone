@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/macro'; 
+import styled from 'styled-components'; 
 import HeaderLogo from './Logo'; 
-import HeaderDarkButtonContainer from './DarkButton/Container';
+// import HeaderDarkButtonContainer from './Dark/Container';
 import HeaderUsername from './Username/index';
 import HeaderNavLink from './NavLink';
 
@@ -23,12 +23,17 @@ const Wrapper = styled.header`
         margin-bottom: 16px; 
         height: 40px;
     }
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 `;
 
 export default function Header({ user, logout }) {
     return (
         <Wrapper>
-            <HeaderDarkButtonContainer />
+            <HeaderLogo />
+            {/* <HeaderDarkButtonContainer /> */}
             {user ? (
                 <>
                     <HeaderUsername username={user.username} />

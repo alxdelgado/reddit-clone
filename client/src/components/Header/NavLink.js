@@ -1,18 +1,19 @@
-import styled from 'styled-components/macro'; 
+import styled from 'styled-components'; 
 import NavLink from '../shared/NavLink'; 
-import { headerItem, wideFont, link, transition } from '../shared/helpers';
+// import { headerItem, wideFont, link, transition } from '../shared/helpers';
 
 const HeaderNavLink = styled(NavLink)`
-    ${headerItem}; 
-    ${wideFont}; 
-    ${link}; 
+
 
     position: relative; 
     cursor: pointer; 
-    color: ${props => props.theme.mutedText}; 
+    color: ${props => props.theme.mutedText};
+    padding-top: 0.8rem;
+    margin-right: 1rem;
+    text-decoration: none;  
 
     ::after {
-        ${transition('opacity', 'border-bottom-width')}
+        
 
         content: ''; 
         position: absolute; 

@@ -1,8 +1,5 @@
 const constants = {
   error: '#f5222d',
-  vote: '#b6b6b6',
-  upvote: '#f9920b',
-  downvote: '#2e70ff'
 };
 
 const dark = {
@@ -12,7 +9,6 @@ const dark = {
   border: '#333333',
   accent: '#33a0ff',
   pageBackground: '#1b1b1b',
-  voteButtonHover: '#383838',
   foreground: '#262626',
   activeBackground: '#333333',
   inputBackground: '#212121',
@@ -26,7 +22,6 @@ const light = {
   border: '#ebedf0',
   accent: '#1890ff',
   pageBackground: '#f4f6f8',
-  voteButtonHover: '#f2f2f2',
   foreground: '#ffffff',
   activeBackground: '#fafafa',
   inputBackground: '#fcfcfc',

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro'; 
+import styled from 'styled-components'; 
 
 // styled wrapper
 const List = styled.ul`
@@ -16,9 +16,11 @@ const List = styled.ul`
 `;
 
 export default function PostList(props) {
-    console.log(props);
+    console.log("PostList component -->", props);
 
     return (
-
+        <List>
+            <h1>{props.title}</h1>
+        </List>
     )
 }

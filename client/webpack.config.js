@@ -1,6 +1,8 @@
 // import dependencies 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 // create webpack export
 module.exports = {

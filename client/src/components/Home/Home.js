@@ -1,4 +1,5 @@
 import React from 'react';
+import regeneratorRuntime from 'regenerator-runtime';
 import styled from 'styled-components'; 
 import { Route } from 'react-router-dom';
 
@@ -7,6 +8,8 @@ import HomePageSection from './Home.styles';
 
 // import components; 
 // import SideBarContainer from '../Sidebar/Container';
+import Posts from '../Posts/Posts';
+import Header from '../Header/Component';
 
 
 const Wrapper = styled.div`
@@ -24,12 +27,15 @@ const Wrapper = styled.div`
     }
 `;
 
-const Home = () => (
-    <Wrapper>
-        <HomePageSection>
-            Yoo this is the home page! 
-        </HomePageSection>
-    </Wrapper>
-); 
-
-export default Home; 
+export default function Home(props) {
+    console.log(props)
+    return (
+        <Wrapper>
+            <HomePageSection>
+            <Header />
+                Yoo this is the home page!
+                <Posts />
+            </HomePageSection>
+        </Wrapper>
+    )
+}
