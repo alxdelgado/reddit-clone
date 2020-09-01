@@ -13,11 +13,11 @@ import Header from '../Header/Component';
 
 
 const Wrapper = styled.div`
-    display: flex; 
     align-items: flex-start; 
     margin: 0 10vw; 
 
     @media (max-width: 1024px) {
+        display: block;
         margin: 0 5vw; 
     }
 
@@ -28,7 +28,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Home(props) {
-    console.log(props)
+    console.log("Home Page component -->", props)
+
     return (
         <Wrapper>
             <HomePageSection>

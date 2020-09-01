@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 `;
 
 // fetch all "hot" posts; 
-export default function Posts(props) {
+export default function Posts() {
 
     const [posts, setPosts] = useState([]);
 
@@ -44,19 +44,19 @@ export default function Posts(props) {
         
         // fetch all "hot" posts; 
         // docs: https://github.com/not-an-aardvark/snoowrap
-        // write the async function to fetch the data 
-        // then pass it through to the HTML;
+        // write the async function to fetch the data;
         const getRedditHot = async () => {
             let response = await r.getHot();
             const posts = response; 
             setPosts(posts);
-            console.log(posts);
+            console.log("getRedditHot -->", posts);
         } 
 
-        let getData = getRedditHot();
-        console.log(getData)
+        getRedditHot();
+        console.log(posts); 
     }, []);
 
+    console.log("outside useEffect -->", posts);
     return (
         <Wrapper>
             {posts.map((post, idx) => {

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const List = styled.ul`
     list-style: none; 
     border: 1px solid ${props => props.theme.border}; 
-    border-radius: 2px; 
+    border-radius: 2px;
 
     @media (max-width: 768px) {
         border-top: none; 
@@ -15,12 +15,18 @@ const List = styled.ul`
     }
 `;
 
+const RedditTitle = styled.h1`
+    text-decoration: none;
+    font-size: 1rem;  
+
+`; 
+
 export default function PostList(props) {
     console.log("PostList component -->", props);
-
+    // TODO: figure out how to print the posts to the page; 
     return (
         <List>
-            <h1>{props.title}</h1>
+            <RedditTitle>{props.props.title}</RedditTitle>
         </List>
     )
 }
