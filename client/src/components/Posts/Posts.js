@@ -11,7 +11,7 @@ import PostList from '../PostList/PostList';
 
 // styled wrapper; 
 const Wrapper = styled.div`
-    display: flex; 
+ 
     align-items: center; 
     margin: 0 10vw; 
 
@@ -26,11 +26,14 @@ const Wrapper = styled.div`
 `;
 
 // fetch all "hot" posts; 
-export default function Posts() {
+export default function Posts(props) {
+    console.log("Posts -->", props);
 
     const [posts, setPosts] = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    useEffect(() => { 
+    useEffect(() => {
         // snoowrap api wrapper;
         // Docs: --> https://not-an-aardvark.github.io/snoowrap/index.html
         const snoowrap = require('snoowrap');
@@ -45,25 +48,33 @@ export default function Posts() {
         // fetch all "hot" posts; 
         // docs: https://github.com/not-an-aardvark/snoowrap
         // write the async function to fetch the data;
+        
+        
         const getRedditHot = async () => {
-            let response = await r.getHot();
-            const posts = response; 
-            setPosts(posts);
-            console.log("getRedditHot -->", posts);
-        } 
+            if (error) {
+                setError(true); 
+            } else {
+                setError(false);
+                let response = await r.getHot('wec');
+                const posts = response; 
+                setPosts(posts);
+                // console.log("getRedditHot -->", posts);
+            }
+        }   
 
         getRedditHot();
-        console.log(posts); 
+        // console.log("getRedditHot end of useEffect -->", posts); 
     }, []);
 
-    console.log("outside useEffect -->", posts);
+    console.log("getRedditHot outside useEffect -->", posts);
+
     return (
         <Wrapper>
-            {posts.map((post, idx) => {
-                return <PostList key={idx} props={post} />
-            })}
+            {!loading &&
+                posts.map((post, idx, ...otherPostProps) => {
+                    return <PostList key={idx} props={post} {...otherPostProps} />
+                })}
         </Wrapper>
     )
     
 };
-

@@ -1,11 +1,11 @@
-import { createBrowserHistory } from 'history';
-import store from '../store';
+// import { createBrowserHistory } from 'history';
+// import { store } from '../redux/store';
 
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
-history.listen(() => {
-    if (store.getState().error) store.dispatch(hideErrorClearTimeout()); 
-}); 
+// history.listen(() => {
+//     if (store.getState().error) store.dispatch(hideErrorClearTimeout()); 
+// }); 
 
-export default history;
+// export default history;

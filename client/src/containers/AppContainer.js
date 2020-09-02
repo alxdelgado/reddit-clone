@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import App from './app';
+// import { connect } from 'react-redux';
+// import App from './app';
 
-const mapStateToProps = state => ({ dark: state.theme.dark });
+// const mapStateToProps = state => ({ dark: state.theme.dark });
 
-const AppContainer = connect(mapStateToProps)(App);
+// const AppContainer = connect(mapStateToProps)(App);
 
-export default AppContainer;
+// export default AppContainer;
