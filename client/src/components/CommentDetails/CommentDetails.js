@@ -16,8 +16,10 @@ const List = styled.ul`
     }
 `;
 
+// STRETCH GOAL: figuring out how to dynamically route to an individual post;  
+
 export default function CommentDetails(props) {
-    console.log("Comment Details -->", props);
+    // console.log("Comment Details -->", props);
     return (
         <>
             <List>

@@ -33,7 +33,12 @@ export default function Header({ user, logout }) {
     return (
         <Wrapper>
             <HeaderLogo />
-            {/* <HeaderDarkButtonContainer /> */}
+            <>
+                <HeaderNavLink to='/'>Home</HeaderNavLink>
+                <HeaderNavLink to='/posts'>Hot Posts</HeaderNavLink>
+
+            </>
+            {/* <HeaderDarkButtonContainer />
             {user ? (
                 <>
                     <HeaderUsername username={user.username} />
@@ -46,7 +51,7 @@ export default function Header({ user, logout }) {
                     <HeaderNavLink to='/login'>log in</HeaderNavLink>
                     <HeaderNavLink to='/signup'>sign up</HeaderNavLink>
                 </>
-            )}
+            )} */}
         </Wrapper>
     );
 }; 

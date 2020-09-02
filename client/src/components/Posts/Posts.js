@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect, Suspense } from 'react'; 
 import regeneratorRuntime from 'regenerator-runtime';
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import { REDDIT_USER_AGENT, REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_REFRE
 
 // import components; 
 import PostList from '../PostList/PostList';
+import Loading from '../../assets/loader.gif';
 
 
 // styled wrapper; 
@@ -69,12 +70,13 @@ export default function Posts(props) {
     console.log("getRedditHot outside useEffect -->", posts);
 
     return (
-        <Wrapper>
-            {!loading &&
-                posts.map((post, idx, ...otherPostProps) => {
-                    return <PostList key={idx} props={post} {...otherPostProps} />
+        <Suspense fallback={Loading}>
+            <Wrapper>
+                {posts.map((post, idx, ...otherPostProps) => {
+                        return <PostList key={idx} props={post} {...otherPostProps} />
                 })}
-        </Wrapper>
+            </Wrapper>
+        </Suspense>
     )
     
 };

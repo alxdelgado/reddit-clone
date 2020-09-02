@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components'; 
 import { Route, Switch, Link, useRouteMatch, useParams } from 'react-router-dom';
 
 // import components; 
 import ErrorBoundary from '../../util/ErrorBoundary';
+import Loading from '../../assets/loader.gif';
 
 // styled components;
 const List = styled.ul`
@@ -26,18 +27,16 @@ const RedditTitle = styled.h1`
 `; 
 
 export default function PostList(props) {
-    console.log("PostList -->", props);
+    // console.log("PostList -->", props);
 
     // let { path, url } = useRouteMatch();
 
     // having trouble dynamically routing a link to each post 
     // that takes the user to a view of the individual posts, comments, likes, etc. 
 
-    if (props.props.thumbnail === null) {
-        return `No thumbnail`;
-    }
     return (
         <ErrorBoundary>
+            <Suspense fallback={<h1>Loading...</h1>}>
             <List>
                 <h5>{props.props.subreddit_name_prefixed}</h5>
                 <RedditTitle>{props.props.title}</RedditTitle>
@@ -46,6 +45,7 @@ export default function PostList(props) {
                     <Link to={`/comments/${props.props.comments._uri}`}>More</Link>
                 </li>
             </List>
+            </Suspense>
         </ErrorBoundary>
     )
 }
