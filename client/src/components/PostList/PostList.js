@@ -37,14 +37,14 @@ export default function PostList(props) {
     return (
         <ErrorBoundary>
             <Suspense fallback={<h1>Loading...</h1>}>
-            <List>
-                <h5>{props.props.subreddit_name_prefixed}</h5>
-                <RedditTitle>{props.props.title}</RedditTitle>
-                <img src={props.props.thumbnail}/>
-                <li>
-                    <Link to={`/comments/${props.props.comments._uri}`}>More</Link>
-                </li>
-            </List>
+                <List key={props.props.id}>
+                    <h5>{props.props.subreddit_name_prefixed}</h5>
+                    <RedditTitle>{props.props.title}</RedditTitle>
+                    {/* <img src={props.props.thumbnail}/> */}
+                    <li>
+                        <Link to={`/comments/${props.props.comments._uri}`}>More</Link>
+                    </li>
+                </List>
             </Suspense>
         </ErrorBoundary>
     )

@@ -22,7 +22,7 @@ export default function App(props) {
                             <Switch>
                                 <Route exact path='/' component={Home} />
                                 <Route exact path='/posts' component={Posts} />
-                                <Route path='/comments' component={Comment} />
+                                <Route name="comments" path='/comments' component={Comment} />
                             </Switch>
                     </> 
             </ThemeProvider>
