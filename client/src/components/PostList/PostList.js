@@ -33,6 +33,7 @@ export default function PostList(props) {
 
     // having trouble dynamically routing a link to each post 
     // that takes the user to a view of the individual posts, comments, likes, etc. 
+    // Docs: --> https://github.com/ReactTraining/react-router/blob/v0.13.6/doc/03%20Components/Link.md#params
 
     return (
         <ErrorBoundary>
