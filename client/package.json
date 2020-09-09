@@ -25,7 +25,7 @@
     "babel-plugin-dotenv": "^0.1.1",
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
-    "css-loader": "^4.2.2",
+    "css-loader": "^4.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "file-loader": "^6.1.0",
@@ -44,7 +44,7 @@
     "reselect": "^4.0.0",
     "snoowrap": "^1.21.0",
     "style-loader": "^1.2.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
