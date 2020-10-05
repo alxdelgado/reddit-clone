@@ -1,11 +1,13 @@
-import React, { useState, useEffect, Suspense } from 'react'; 
+import React, { useState, useEffect, Suspense } from 'react';
+import _ from 'lodash';
+import { connect } from 'react-redux'; 
 import regeneratorRuntime from 'regenerator-runtime';
 import styled from 'styled-components';
-
 import { REDDIT_USER_AGENT, REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_REFRESH_TOKEN } from 'babel-dotenv';
 
 
-// import components; 
+// import components;
+import { fetchPosts } from '../../redux/actions';
 import PostList from '../PostList/PostList';
 import Loading from '../../assets/loader.gif';
 
@@ -27,56 +29,34 @@ const Wrapper = styled.div`
 `;
 
 // fetch all "hot" posts; 
-export default function Posts(props) {
-    console.log("Posts -->", props);
+function Posts() {
 
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
+useEffect(() => {
+    const data = fetchPosts();
+}, []);
 
-    useEffect(() => {
-        // snoowrap api wrapper;
-        // Docs: --> https://not-an-aardvark.github.io/snoowrap/index.html
-        const snoowrap = require('snoowrap');
-        // creating the snoowrap requester with OAuth credentials;
-        const r = new snoowrap({
-            userAgent: REDDIT_USER_AGENT,
-            clientId: REDDIT_CLIENT_ID,
-            clientSecret: REDDIT_CLIENT_SECRET, 
-            refreshToken: REDDIT_REFRESH_TOKEN,
-        });
-        
-        // fetch all "hot" posts; 
-        // docs: https://github.com/not-an-aardvark/snoowrap
-        // write the async function to fetch the data;
-        
-        
-        const getRedditHot = async () => {
-            if (error) {
-                setError(true); 
-            } else {
-                setError(false);
-                let response = await r.getHot('wec');
-                const posts = response; 
-                setPosts(posts);
-                // console.log("getRedditHot -->", posts);
-            }
-        }   
-
-        getRedditHot();
-        // console.log("getRedditHot end of useEffect -->", posts); 
-    }, []);
-
-    console.log("getRedditHot outside useEffect -->", posts);
+// helper function
+// const renderPosts = () => {
+//     return _.map((post, idx) => {
+//         return 
+//             <li key={idx}>
+//                 <h3>{post.id}</h3> 
+//             </li>
+//     })
+// }
 
     return (
         <Suspense fallback={Loading}>
             <Wrapper>
-                {posts.map((post, idx, ...otherPostProps) => {
-                        return <PostList key={idx} props={post} {...otherPostProps} />
-                })}
+                
             </Wrapper>
         </Suspense>
     )
-    
-};
+
+}
+
+function mapStateToProps(state) {
+    return { posts: state.posts }
+}
+
+export default connect(mapStateToProps, { fetchPosts })(Posts);

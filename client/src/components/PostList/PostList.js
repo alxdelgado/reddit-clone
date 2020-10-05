@@ -4,7 +4,9 @@ import { Route, Switch, Link, useRouteMatch, useParams } from 'react-router-dom'
 
 // import components; 
 import ErrorBoundary from '../../util/ErrorBoundary';
+
 import Loading from '../../assets/loader.gif';
+import PostDetails from '../PostDetails/PostDetails';
 
 // styled components;
 const List = styled.ul`
@@ -26,7 +28,7 @@ const RedditTitle = styled.h1`
 
 `; 
 
-export default function PostList(props) {
+export default function PostList({ props }) {
     // console.log("PostList -->", props);
 
     // let { path, url } = useRouteMatch();
@@ -35,16 +37,27 @@ export default function PostList(props) {
     // that takes the user to a view of the individual posts, comments, likes, etc. 
     // Docs: --> https://github.com/ReactTraining/react-router/blob/v0.13.6/doc/03%20Components/Link.md#params
 
+    // console.log("PROPS", props)
+    // console.log("ID", props.id);
+    // const comments = fetchPostComments(props.id);
+    // console.log("INSIDE POST LIST", comments);
+    
+    // const newArray = comments
+    /// map over array and print each comment
+    // link to an individual comment;
+
+
     return (
         <ErrorBoundary>
             <Suspense fallback={<h1>Loading...</h1>}>
-                <List key={props.props.id}>
-                    <h5>{props.props.subreddit_name_prefixed}</h5>
-                    <RedditTitle>{props.props.title}</RedditTitle>
-                    {/* <img src={props.props.thumbnail}/> */}
-                    <li>
-                        <Link to={`/comments/${props.props.comments._uri}`}>More</Link>
-                    </li>
+                <List>
+                    <RedditTitle>{props.title}</RedditTitle>
+                    <h5>{props.subreddit_name_prefixed}</h5>
+                    <Link to={{
+                        pathname: `/comments/${props.id}`
+                    }}>
+                        <button>More</button>
+                    </Link>
                 </List>
             </Suspense>
         </ErrorBoundary>
